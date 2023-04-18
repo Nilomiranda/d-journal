@@ -4,7 +4,7 @@ import axios from 'axios';
 const githubHttpClient = axios.create({
     baseURL: 'https://api.github.com/repos/nilomiranda/d-journal/issues',
     headers: {
-        Accept: '',
+        Accept: 'application/vnd.github+json',
         'X-GitHub-Api-Version': '2022-11-28',
         Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
     },
@@ -39,8 +39,8 @@ interface GithubIssue {
     body: string;
 }
 
-const GithubIssues = {
-    async list({ page = 1 }: ListGithubIssuesParams): Promise<GithubIssue[]> {
+export const Post = {
+    async list({ page = 1 }: ListGithubIssuesParams = {}): Promise<GithubIssue[]> {
         try {
             const response = await githubHttpClient.get<any, AxiosResponse<GithubIssue[]>>('', {
                 params: {
