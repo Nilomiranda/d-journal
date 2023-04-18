@@ -10,16 +10,16 @@ const githubHttpClient = axios.create({
     },
 })
 
-interface ListGithubIssuesParams {
+interface ListPostsParams {
     page?: number;
 }
 
-interface GithubUser {
+interface PostOwner {
     login: string;
     id: number;
 }
 
-interface GithubLabel {
+interface PostLabel {
     id: number;
     name: string;
     
@@ -29,20 +29,21 @@ interface GithubLabel {
     color: string;
 }
 
-interface GithubIssue {
+export interface Post {
     url: string;
     id: number;
     number: number;
-    user: GithubUser;
-    labels: GithubLabel[];
+    user: PostOwner;
+    labels: PostLabel[];
     title: string;
     body: string;
+    created_at: string;
 }
 
 export const Post = {
-    async list({ page = 1 }: ListGithubIssuesParams = {}): Promise<GithubIssue[]> {
+    async list({ page = 1 }: ListPostsParams = {}): Promise<Post[]> {
         try {
-            const response = await githubHttpClient.get<any, AxiosResponse<GithubIssue[]>>('', {
+            const response = await githubHttpClient.get<any, AxiosResponse<Post[]>>('', {
                 params: {
                     state: 'open',
                     creator: 'nilomiranda',
@@ -60,9 +61,9 @@ export const Post = {
         }
     },
 
-    async read(): Promise<GithubIssue> {
+    async read(): Promise<Post> {
         try {
-            const response = await githubHttpClient.get<any, AxiosResponse<GithubIssue>>('');
+            const response = await githubHttpClient.get<any, AxiosResponse<Post>>('');
 
             return response.data;
         } catch (err) {
