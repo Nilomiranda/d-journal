@@ -8,5 +8,5 @@
 
 <div class={Card}>
     <small>{format(new Date(post.created_at), 'LLLL do, yyyy')}</small>
-    <strong>{post.title}</strong>
+    <h1>{post.title}</h1>
 </div>
