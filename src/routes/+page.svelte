@@ -1,5 +1,11 @@
 <script>
+	import PostListElement from "../components/PostListElement.svelte";
+
     export let data;
 </script>
 
-<strong>{data?.posts[0].title}</strong>
+<ul>
+    {#each data.posts as post}
+        <PostListElement post={post} />
+    {/each}
+</ul>
