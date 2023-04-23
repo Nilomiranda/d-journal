@@ -6,6 +6,7 @@ export const Card = style({
     cursor: 'pointer',
     textDecoration: 'none',
     color: '#000000',
+    width: '100%',
 })
 
 globalStyle(`${Card} h1`, {
