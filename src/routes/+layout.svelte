@@ -2,6 +2,4 @@
     import "./layout.css"
 </script>
 
-<div>
-    <slot></slot>
-</div>
+<slot></slot>

@@ -61,9 +61,9 @@ export const Post = {
         }
     },
 
-    async read(): Promise<Post> {
+    async read(number: string): Promise<Post> {
         try {
-            const response = await githubHttpClient.get<any, AxiosResponse<Post>>('');
+            const response = await githubHttpClient.get<any, AxiosResponse<Post>>(`/${number}`);
 
             return response.data;
         } catch (err) {
