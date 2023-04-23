@@ -14,12 +14,6 @@
 
         return description ?? `Danilo's thoughts about ${title}`; 
     }
-
-    export const getFavIcon = () => {
-        const { origin } = window.location;
-
-        return `${origin}/favicon.png`
-    }
 </script>
 
 <svelte:head>
