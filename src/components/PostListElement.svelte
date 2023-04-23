@@ -6,7 +6,7 @@
     export let post: Post;
 </script>
 
-<div class={Card}>
+<a class={Card} href="#">
     <small>{format(new Date(post.created_at), 'LLLL do, yyyy')}</small>
     <h1>{post.title}</h1>
-</div>
+</a>
