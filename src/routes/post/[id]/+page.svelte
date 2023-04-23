@@ -6,6 +6,10 @@
     export let data: Post;
 </script>
 
+<svelte:head>
+    <title>{data.title} | Danilo Journal</title>
+</svelte:head>
+
 <article class={Article}>
     <h1 class="post-title">{data.title}</h1>
 
