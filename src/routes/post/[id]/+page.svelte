@@ -4,14 +4,22 @@
 	import { Article } from "./page.css";
 
     export let data: Post;
+
+    export const getDescription = () => {
+        const { body, title } = data;
+
+        const [, description] = /\[description:(.+?):description\]/gmi.exec(body) as Array<string>;
+
+        return description ?? `Danilo's thoughts about ${title}`; 
+    }
 </script>
 
 <svelte:head>
     <title>{data.title} | Danilo Journal</title>
 
     <meta property="og:title" content={data.title}>
-    <meta property="og:description" content="A brief description of your page">
-    <!-- <meta property="og:url" content="https://yourpage.com"> -->
+    <meta property="og:image" content="/src/favicon.png">
+    <meta property="og:description" content={getDescription()}>
     <meta property="og:type" content="website">
 </svelte:head>
 
