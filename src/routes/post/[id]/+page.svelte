@@ -8,6 +8,11 @@
 
 <svelte:head>
     <title>{data.title} | Danilo Journal</title>
+
+    <meta property="og:title" content={data.title}>
+    <meta property="og:description" content="A brief description of your page">
+    <!-- <meta property="og:url" content="https://yourpage.com"> -->
+    <meta property="og:type" content="website">
 </svelte:head>
 
 <article class={Article}>
