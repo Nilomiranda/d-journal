@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { page } from '$app/stores';
     import SvelteMarkdown from "svelte-markdown";
 	import type { Post } from "../../../resources/github";
 	import { Article } from "./page.css";
@@ -25,7 +26,7 @@
     <title>{data.title} | Danilo Journal</title>
 
     <meta property="og:title" content={data.title}>
-    <meta property="og:image" content={getFavIcon()}>
+    <meta property="og:image" content={`${$page.url.origin}/favicon.png`}>
     <meta property="og:description" content={getDescription()}>
     <meta property="og:type" content="website">
 </svelte:head>
