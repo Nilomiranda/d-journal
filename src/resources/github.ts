@@ -30,6 +30,7 @@ interface PostLabel {
 }
 
 export interface Post {
+    state: 'open'| 'closed'
     url: string;
     id: number;
     number: number;

@@ -6,7 +6,9 @@ export async function load({ params }) {
         const post = await Post.read(params.id);
 
         const labels = post.labels.map(postLabel => postLabel.name);
-        if (!labels.includes('blog-post')) {
+        const { state } = post;
+
+        if (!labels.includes('blog-post') || state !== 'open') {
             throw new Error('Must be a blog post');
         }
 
