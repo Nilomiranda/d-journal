@@ -4,14 +4,20 @@
 	import { Article } from "./page.css";
 
     export let data: Post;
+    export const descriptionRegex = /\[description:(.+?):description\]/gmi;
 
     export const getDescription = () => {
         const { body, title } = data;
 
-        const [fullMatch, description] = /\[description:(.+?):description\]/gmi.exec(body) as Array<string>;
-        console.log({fullMatch})
+        const [, description] = descriptionRegex.exec(body) as Array<string>;
 
         return description ?? `Danilo's thoughts about ${title}`; 
+    }
+
+    export const getFavIcon = () => {
+        const { origin } = window.location;
+
+        return `${origin}/favicon.png`
     }
 </script>
 
@@ -19,7 +25,7 @@
     <title>{data.title} | Danilo Journal</title>
 
     <meta property="og:title" content={data.title}>
-    <meta property="og:image" content="/src/favicon.png">
+    <meta property="og:image" content={getFavIcon()}>
     <meta property="og:description" content={getDescription()}>
     <meta property="og:type" content="website">
 </svelte:head>
@@ -27,5 +33,5 @@
 <article class={Article}>
     <h1 class="post-title">{data.title}</h1>
 
-    <SvelteMarkdown source={data.body.replace(/\[description:(.+?):description\]/gmi, '')} />
+    <SvelteMarkdown source={data.body.replace(descriptionRegex, '')} />
 </article>
