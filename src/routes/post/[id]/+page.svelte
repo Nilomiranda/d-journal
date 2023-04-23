@@ -8,7 +8,8 @@
     export const getDescription = () => {
         const { body, title } = data;
 
-        const [, description] = /\[description:(.+?):description\]/gmi.exec(body) as Array<string>;
+        const [fullMatch, description] = /\[description:(.+?):description\]/gmi.exec(body) as Array<string>;
+        console.log({fullMatch})
 
         return description ?? `Danilo's thoughts about ${title}`; 
     }
@@ -26,5 +27,5 @@
 <article class={Article}>
     <h1 class="post-title">{data.title}</h1>
 
-    <SvelteMarkdown source={data.body} />
+    <SvelteMarkdown source={data.body.replace(/\[description:(.+?):description\]/gmi, '')} />
 </article>
